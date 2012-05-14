@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>artivisi-rem</groupId>
+		<artifactId>aplikasi</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>rem-config</artifactId>
+	<packaging>jar</packaging>
+	<name>Konfigurasi Aplikasi</name>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>artivisi-rem</groupId>
+			<artifactId>rem-domain</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${org.hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.9</version>
+			<scope>runtime</scope>
+		</dependency>
+	 <dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate</artifactId>
+	  <version>3.2.5.ga</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-entitymanager</artifactId>
+	  <version>3.3.2.GA</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>javax.sql</groupId>
+	  <artifactId>jdbc-stdext</artifactId>
+	  <version>2.0</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>javax.transaction</groupId>
+	  <artifactId>jta</artifactId>
+	  <version>1.0.1B</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>unknown.binary</groupId>
+	  <artifactId>derbyclient</artifactId>
+	  <version>SNAPSHOT</version>
+	 </dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.groovy.maven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<source>
+							try {
+								def scmversion = 'git describe'.execute().text.trim()
+								project.properties.setProperty('scmVersion',scmversion)
+							} catch(Exception e){
+								project.properties.setProperty('scmVersion','undefined')
+							}
+							</source>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+ <repositories>
+  <repository>
+   <url>http://repo1.maven.org/maven2/</url>
+   <id>hibernate-support</id>
+   <layout>default</layout>
+   <name>Repository for library Library[hibernate-support]</name>
+  </repository>
+  <repository>
+   <url>http://download.java.net/maven/2/</url>
+   <id>hibernate-support</id>
+   <layout>default</layout>
+   <name>Repository for library Library[hibernate-support]</name>
+  </repository>
+  <repository>
+   <id>unknown-jars-temp-repo</id>
+   <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
+   <url>file:${project.basedir}/lib</url>
+  </repository>
+ </repositories>
+</project>
+

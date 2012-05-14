@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+            
+    <changeSet id="1" author="anggi">
+        <createTable tableName="M_Pegawai">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nip" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alamat" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="noTelepon" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jabatan" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="M_User">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet> 
+    
+    <changeSet id="2" author="anggi">
+        <loadData tableName="M_User" file="com/rem/db/data/m_user.csv">
+            <column header="id" type="STRING" />
+            <column header="username" type="STRING"/>
+            <column header="password" type="STRING"/>
+        </loadData>
+        
+        <loadData tableName="M_Pegawai" file="com/rem/db/data/m_pegawai.csv">
+            <column header="id" type="STRING"/>
+            <column header="nip" type="STRING"/>
+            <column header="nama" type="STRING"/>
+            <column header="alamat" type="STRING"/>
+            <column header="noTelepon" type="STRING"/>
+            <column header="jabatan" type="STRING"/>
+        </loadData>
+    </changeSet> 
+</databaseChangeLog>
