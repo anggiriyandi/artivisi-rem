@@ -10,6 +10,7 @@ import com.rem.domain.service.MasterService;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -18,7 +19,8 @@ import org.springframework.util.StringUtils;
  *
  * @author gelz
  */
-@Service @Transactional
+@Service("masterService") 
+@Transactional(readOnly=true)
 public class MasterServiceImpl implements MasterService{
     @Autowired SessionFactory sessionFactory;
     
@@ -68,6 +70,6 @@ public class MasterServiceImpl implements MasterService{
 
     @Override
     public List<M_Pegawai> allPegawai() {
-        return (List<M_Pegawai>) sessionFactory.getCurrentSession().createQuery("from M_Pegwai").list();
+        return sessionFactory.getCurrentSession().createQuery("from M_Pegawai").list();
     }
 }

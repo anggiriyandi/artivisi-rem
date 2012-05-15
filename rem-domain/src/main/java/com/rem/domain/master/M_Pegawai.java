@@ -16,7 +16,6 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="M_Pegawai")
-        
 public class M_Pegawai extends BaseEntity{
     @Column(nullable=false,unique=true)
     private String nip;

@@ -8,7 +8,8 @@
 
 
     <context:property-placeholder 
-        location="classpath:jdbc.properties"  />
+        location="classpath:jdbc.properties"/>
+   <context:component-scan base-package="com.rem.service.impl"/>
 
     <tx:annotation-driven/>
 
@@ -19,18 +20,18 @@
       p:password="${jdbc.password}"/>
       
       <bean id="sessionFactory"
-        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
         p:dataSource-ref="dataSource" p:configLocations="classpath*:com/rem/**/hibernate.cfg.xml">
             <property name="hibernateProperties">
                 <props>
                     <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 </props>
             </property>
-            <property name="packagesToScane" value="com.rem.domain"/>
+            <property name="packagesToScan" value="com.rem.domain.service"/>
       </bean>
       
       <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-        p:seesionFactory-ref="sessionFactory"/>
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+        p:sessionFactory-ref="sessionFactory"/>
         
 </beans>

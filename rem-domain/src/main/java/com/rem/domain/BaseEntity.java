@@ -19,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 @MappedSuperclass
 public class BaseEntity implements Serializable{
     @Id @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="uuid",strategy="uuid2")
+    @GenericGenerator(name="system-uuid",strategy="uuid2")
     private String id;
 
     public String getId() {

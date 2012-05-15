@@ -12,7 +12,7 @@
        <module>rem-services</module>
         <module>rem-domain</module>
          <module>rem-controller</module>
-        <!-- <module>rem-web</module> -->
+        <module>rem-web</module>
     </modules>
 
     <!-- Shared version number properties -->

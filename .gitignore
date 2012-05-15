@@ -5,3 +5,4 @@
 *.war
 *.ear
 /rem-config/target/
+/rem-web/target/
